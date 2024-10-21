@@ -1,7 +1,7 @@
-import './App.css'
-import SkillForgeImage from './assets/hero-image_2.avif';
+import '../App.css'
+import SkillForgeImage from '../assets/hero-image_2.avif';
 
-function Home()
+function HeroHome()
 {
     return <>
     <div class="row flex-lg-row-reverse align-items-center g-5 py-5 hero-margin" style={{ marginLeft: '20px',width: '99%'}}>
@@ -20,4 +20,4 @@ function Home()
     </>
 }
 
-export default Home;
+export default HeroHome;

@@ -1,23 +1,28 @@
-import Footer from './Footer';
-import Header from './Header';
-import Home from './Home';
-import Features from './Features';
-import HowItWorks from './HowItWorks';
-import PopularCourses from './PopularCourses';
-import Cta from './Cta';
-
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './components/Home';
+import './App.css';
+import CourseSummary from './components/CourseSummary';
+import Courses from './components/Courses';
+import MyProfile from './components/MyProfile';
+import ContactUs from './components/ContactUs';
+import Login from './components/login';
+import Signup from './components/signup';
+import SkillAssessment from './components/SkillAssessment';
 
 function App() {
-  return <>
-    <Header></Header>
-    <Home></Home>
-    <Features></Features>
-    <HowItWorks></HowItWorks>
-    <PopularCourses></PopularCourses>
-    <Cta></Cta>
-    <Footer></Footer>
-
-    </>
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/courses" element={<Courses />} /> 
+      <Route path="/skill-assessment" element={<SkillAssessment />} /> 
+      <Route path="/my-profile" element={<MyProfile />} /> 
+      <Route path="/contact" element={<ContactUs />} /> 
+      <Route path="/course-summary" element={<CourseSummary />} /> 
+    </Routes>
+  );
 }
 
 export default App;

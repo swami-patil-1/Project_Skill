@@ -1,6 +1,3 @@
-import { PiPersonArmsSpreadFill } from "react-icons/pi";
-import { MdAssessment } from "react-icons/md";
-import { MdGolfCourse } from "react-icons/md";
 import { MdPersonalVideo } from "react-icons/md";
 import { GiCheckMark } from "react-icons/gi";
 import { FaBookOpen } from "react-icons/fa";

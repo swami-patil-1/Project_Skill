@@ -1,8 +1,8 @@
-import reactForBeginnersImg from './assets/react_for_beginners.jpg';
-import MachineLearing from './assets/Machine_Learning.jpg';
-import PythonDataScience from './assets/PythonDataScience1.jpeg';
-import JavascriptAdvanced from './assets/javascript_advanced.jpeg';
-import { FaStar, FaStarHalfAlt } from 'react-icons/fa'; // Importing full and half star icons from react-icons
+import reactForBeginnersImg from '../assets/react_for_beginners.jpg';
+import MachineLearing from '../assets/Machine_Learning.jpg';
+import PythonDataScience from '../assets/PythonDataScience1.jpeg';
+import JavascriptAdvanced from '../assets/javascript_advanced.jpeg';
+import { FaStar, FaStarHalfAlt } from 'react-icons/fa'; 
 
 const PopularCourses = () => {
   const courses = [

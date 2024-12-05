@@ -31,7 +31,7 @@ function Features() {
               <p>
               Get tailored course recommendations based on your current skills and future goals to enhance your learning experience.
               </p>
-              <a href="#" class="btn btn-primary">
+              <a href="/courses" class="btn btn-primary">
                 Explore Courses
               </a>
             </div>
@@ -49,7 +49,7 @@ function Features() {
                 knowledge and help you identify the best courses that will
                 enhance your skills effectively and efficiently.
               </p>
-              <a href="#" class="btn btn-primary">
+              <a href="/skill-assessment" class="btn btn-primary">
                 Start Assessment
               </a>
             </div>
@@ -67,7 +67,7 @@ function Features() {
                 there's something for everyone—whether you're a beginner or
                 looking to advance your skills.
               </p>
-              <a href="#" class="btn btn-primary">
+              <a href="/courses" class="btn btn-primary">
                 View All Courses
               </a>
             </div>

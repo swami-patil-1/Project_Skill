@@ -18,7 +18,7 @@ function Cta() {
         <p style={{ fontSize: "1.4rem", margin: "15px 0" }}>
           Join our community of learners today!
         </p>
-        <a href="#" className="btn btn-success btn-lg">
+        <a href="/my-profile" className="btn btn-success btn-lg">
           Get Started Now
         </a>
       </div>

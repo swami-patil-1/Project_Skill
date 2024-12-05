@@ -1,19 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
-import axios from "axios";  // Import axios to handle HTTP requests
+import { SkillsContext } from "../context/SkillsContext"; 
+import axios from "axios";
 
 const MyProfile = () => {
-  const [profilePic, setProfilePic] = useState(null); 
-  const [name, setName] = useState("John Doe");
-  const [email, setEmail] = useState("johndoe@example.com");
-  const [location, setLocation] = useState("New York, USA");
+  const { interestedSkills, setInterestedSkills } = useContext(SkillsContext); // Use the context
+  const [profilePic, setProfilePic] = useState(null);
+  const [name, setName] = useState("Swami Patil");
+  const [email, setEmail] = useState("swami@gmail.com");
+  const [location, setLocation] = useState("Pune, Maharashtra");
   const [skills, setSkills] = useState(["JavaScript", "React"]);
-  const [interestedSkills, setInterestedSkills] = useState([
-    "TypeScript",
-    "Node.js",
-  ]);
   const [isEditing, setIsEditing] = useState(false);
+  const [successMessage, setSuccessMessage] = useState("");  // New state for success message
 
   const handleProfilePicChange = (e) => {
     const file = e.target.files[0];
@@ -31,16 +30,20 @@ const MyProfile = () => {
       interestedSkills,
     };
 
-    // Send user details to the backend using axios
-    axios.post("http://localhost:5000/api/user/profile", userDetails)
+    axios.post("http://localhost:3001/api/profile", userDetails)
       .then(response => {
         console.log("User details saved successfully:", response.data);
+        setSuccessMessage("Profile saved successfully!");  // Set success message
       })
       .catch(error => {
         console.error("Error saving user details:", error);
+        setSuccessMessage("Error saving profile. Please try again.");  // Handle error message
       });
+    
+    // Only update the interested skills in context, no navigation
+    setInterestedSkills(interestedSkills);
 
-    setIsEditing(false);
+    setIsEditing(false); // Exit editing mode
   };
 
   return (
@@ -54,7 +57,6 @@ const MyProfile = () => {
               alt="User Profile"
               style={styles.profileImage}
             />
-
             {isEditing && (
               <div style={{ marginTop: "10px" }}>
                 <label style={styles.fileLabel}>
@@ -68,14 +70,13 @@ const MyProfile = () => {
               </div>
             )}
           </div>
-
           {/* Username */}
           <div style={styles.inputContainer}>
             <label style={styles.label}>Username:</label>
             {isEditing ? (
               <input
                 type="text"
-                defaultValue={name}
+                value={name}
                 onChange={(e) => setName(e.target.value)}
                 style={styles.input}
               />
@@ -83,14 +84,13 @@ const MyProfile = () => {
               <span>{name}</span>
             )}
           </div>
-
           {/* Email */}
           <div style={styles.inputContainer}>
             <label style={styles.label}>Email:</label>
             {isEditing ? (
               <input
                 type="email"
-                defaultValue={email}
+                value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 style={styles.input}
               />
@@ -98,14 +98,13 @@ const MyProfile = () => {
               <span>{email}</span>
             )}
           </div>
-
           {/* Location */}
           <div style={styles.inputContainer}>
             <label style={styles.label}>Location:</label>
             {isEditing ? (
               <input
                 type="text"
-                defaultValue={location}
+                value={location}
                 onChange={(e) => setLocation(e.target.value)}
                 style={styles.input}
               />
@@ -113,14 +112,13 @@ const MyProfile = () => {
               <span>{location}</span>
             )}
           </div>
-
           {/* Skills */}
           <div style={styles.inputContainer}>
             <label style={styles.label}>Skills:</label>
             {isEditing ? (
               <input
                 type="text"
-                defaultValue={skills.join(", ")}
+                value={skills.join(", ")}
                 onChange={(e) =>
                   setSkills(
                     e.target.value.split(",").map((skill) => skill.trim())
@@ -136,19 +134,17 @@ const MyProfile = () => {
               </ul>
             )}
           </div>
-
           {/* Interested Skills */}
           <div style={styles.inputContainer}>
             <label style={styles.label}>Interested Skills:</label>
             {isEditing ? (
               <input
                 type="text"
-                defaultValue={interestedSkills.join(", ")}
-                onChange={(e) =>
-                  setInterestedSkills(
-                    e.target.value.split(",").map((skill) => skill.trim())
-                  )
-                }
+                value={interestedSkills.join(", ")}
+                onChange={(e) => {
+                  const newSkills = e.target.value.split(",").map((skill) => skill.trim());
+                  setInterestedSkills(newSkills); // Update the context
+                }}
                 style={styles.input}
               />
             ) : (
@@ -159,7 +155,6 @@ const MyProfile = () => {
               </ul>
             )}
           </div>
-
           {isEditing ? (
             <button onClick={handleSave} style={styles.saveButton}>
               Save
@@ -169,6 +164,9 @@ const MyProfile = () => {
               Edit
             </button>
           )}
+
+          {/* Success Message */}
+          {successMessage && <p style={styles.successMessage}>{successMessage}</p>}
         </div>
       </div>
       <Footer />
@@ -258,6 +256,12 @@ const styles = {
     borderRadius: "4px",
     cursor: "pointer",
     fontWeight: "bold",
+  },
+  successMessage: {
+    color: "#28a745",
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: "15px",
   },
 };
 

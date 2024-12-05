@@ -42,7 +42,6 @@ const YourEnrolledCourses = ({ courses, onCourseSelect }) => { // Accepting onCo
                   {course.label}
                 </span>
               )}
-              {/* Add onClick handler to the image */}
               <img
                 src={course.imageUrl}
                 alt={course.title}

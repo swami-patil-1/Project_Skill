@@ -1,13 +1,27 @@
 import React from "react";
-import { useState } from "react";
-import reactForBeginnersImg from "../assets/react_for_beginners.jpg"; // Example image
-import PythonDataScience from "../assets/PythonDataScience1.jpeg"; // Example image
-import JavascriptAdvanced from "../assets/javascript_advanced.jpeg"; // Example image
+import { useState, useContext } from "react";
+import reactForBeginnersImg from "../assets/React_For_Beginners1.jpeg"; 
+import BasicWebDev from "../assets/Web_Development_Bootcamp_Basic.jpeg"; 
+import AdvancedWebDev from "../assets/Web_Development_Bootcamp_Advanced.jpeg"; 
+import NodeJs from "../assets/Nodejs_Crash_Course2.jpeg"; 
+import FullStack from "../assets/Full_Stack_Development1.png"; 
+import AdvancedMachineLearning from "../assets/Machine_Learning2.jpg"; 
+import IntermediateMachineLearning from "../assets/Machine_Learning_Intermediate.jpg"; 
+import DeepLearning from "../assets/Deep_Learning1.jpeg"; 
+import PythonDataScience from "../assets/PythonDataScience1.jpeg"; 
+import PythonDataScience1 from "../assets/PythonDataScience3.jpeg"; 
+import MachineLearning_A_Z from "../assets/Machine_Learning.jpg"; 
+import JavascriptAdvanced from "../assets/javascript_advanced.jpeg"; 
+import DigitalMarketing from "../assets/Digital_Marketing2.jpeg"; 
+import GraphicDesign from "../assets/Graphic_Design2.jpeg"; 
+import CSSMastery from "../assets/CSS_Mastery.jpeg"; 
 import Footer from "./Footer";
 import Header from "./Header";
 import ExploreMoreCourses from "./ExploreMoreCourses";
 import YourEnrolledCourses from "./YourEnrolledCourses";
 import CourseSummary from "./CourseSummary";
+import DomainCategorizer from "./DomainCategorizer";
+import { SkillsContext } from "../context/SkillsContext";
 import "bootstrap/dist/css/bootstrap.min.css";
 import {
   FaVideo,
@@ -23,29 +37,26 @@ function Courses() {
   const courses = {
     EnrolledCourse: [
       {
-        title: "Web Development Bootcamp",
+        title: "Web Development Bootcamp (Basic)",
         instructor: "John Doe",
         rating: 4.5,
         enrollments: 1200,
         duration: "6 weeks",
         price: "₹1,499",
-        imageUrl: reactForBeginnersImg, // Use imported image
+        imageUrl: BasicWebDev, // Use imported image
         label: "New",
         labelStyle: { backgroundColor: "#28a745" },
         progress: 75, // Progress percentage
         name: "Complete Web Development Bootcamp",
         description: `Unlock your potential with our Complete Web Development Bootcamp. With 62+ hours of expertly crafted content, this course takes you from beginner to full-stack developer, equipping you with the latest tools and technologies used by top companies like Apple and Google. Join over a million students who have transformed their careers and start building real-world projects today!`,
         contents: [
-          "HTML 5",
-          "CSS 3",
-          "JavaScript ES6",
-          "React.js",
-          "Node.js",
-          "Express.js",
-          "MongoDB",
-          "RESTful APIs",
-          "Version Control with Git",
-          "Responsive Web Design",
+          "Introduction to HTML & Basic Structure",
+          "Styling with CSS: Selectors, Properties, and Layouts",
+          "JavaScript Basics: Variables, Functions, and Events",
+          "Building Simple Interactive Web Pages",
+          "Responsive Design Fundamentals",
+          "Introduction to Web Hosting and Deployment",
+          "Project: Build Your First Static Website",
         ],
         launchDate: "January 2024",
         includes: [
@@ -116,7 +127,7 @@ function Courses() {
         enrollments: 500,
         duration: "3 weeks",
         price: "₹999",
-        imageUrl: JavascriptAdvanced, // Use imported image
+        imageUrl: NodeJs, // Use imported image
         label: "",
         progress: 20, // Progress percentage
         name: "Complete Node.js Crash Course",
@@ -149,57 +160,17 @@ function Courses() {
           "Deploy Node.js applications.",
         ],
       },
-      {
-        title: "Full Stack Development",
-        instructor: "Bob Brown",
-        rating: 4.6,
-        enrollments: 1100,
-        duration: "8 weeks",
-        price: "₹2,499",
-        imageUrl: PythonDataScience, // Use imported image
-        label: "",
-        progress: 60, // Progress percentage
-        name: "Complete Full Stack Development",
-        description: `Master the art of full-stack development by learning both front-end and back-end technologies. This course provides a holistic understanding of the development process, from building responsive user interfaces to creating robust server-side applications.`,
-        contents: [
-          "Frontend Technologies (HTML, CSS, JS)",
-          "React.js for Frontend Development",
-          "Node.js and Express for Backend Development",
-          "Database Management with MongoDB",
-          "RESTful APIs",
-          "Authentication and Security",
-          "Deployment Strategies",
-          "Responsive Design Principles",
-          "Version Control with Git",
-        ],
-        launchDate: "April 2024",
-        includes: [
-          { text: "80 hours on-demand video", icon: <FaVideo /> },
-          { text: "15 coding exercises", icon: <FaCodeBranch /> },
-          { text: "75 articles", icon: <FaBook /> },
-          { text: "150 downloadable resources", icon: <FaClipboardList /> },
-          { text: "Access on mobile and TV", icon: <FaMobileAlt /> },
-          { text: "Certificate of completion", icon: <FaCertificate /> },
-        ],
-        learnings: [
-          "Build a complete web application.",
-          "Implement both client-side and server-side programming.",
-          "Work with databases effectively.",
-          "Deploy full-stack applications.",
-          "Gain expertise in various technologies.",
-        ],
-      },
     ],
 
     development: [
       {
-        title: "Web Development Bootcamp",
+        title: "Web Development Bootcamp (Advanced)",
         instructor: "John Doe",
         rating: 4.5,
         enrollments: 1200,
         duration: "6 weeks",
         price: "₹1,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: AdvancedWebDev, // Placeholder image
         label: "New",
         labelStyle: { backgroundColor: "#28a745" },
         name: "Complete Web Development Bootcamp",
@@ -243,7 +214,7 @@ function Courses() {
         enrollments: 900,
         duration: "4 weeks",
         price: "₹1,999",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: reactForBeginnersImg, // Placeholder image
         label: "",
         name: "Complete React for Beginners",
         description: `Dive into the world of React and master the fundamentals of building interactive user interfaces. This course covers everything from component-based architecture to state management with hooks. Perfect for anyone looking to start a career in web development or enhance their existing skills!`,
@@ -284,7 +255,7 @@ function Courses() {
         enrollments: 500,
         duration: "3 weeks",
         price: "₹999",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: NodeJs, // Placeholder image
         label: "",
         name: "Complete Node.js Crash Course",
         description: `Get up to speed with Node.js in this comprehensive crash course. You'll learn about server-side programming, working with databases, and building RESTful APIs with Express. Ideal for developers who want to extend their skills into back-end development!`,
@@ -323,7 +294,7 @@ function Courses() {
         enrollments: 1100,
         duration: "8 weeks",
         price: "₹2,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: FullStack, // Placeholder image
         label: "",
         name: "Complete Full Stack Development",
         description: `Master the art of full-stack development by learning both front-end and back-end technologies. This course provides a holistic understanding of the development process, from building responsive user interfaces to creating robust server-side applications.`,
@@ -358,27 +329,28 @@ function Courses() {
     ],
     machineLearning: [
       {
-        title: "Introduction to Machine Learning",
+        title: "Introduction to Machine Learning (Advanced)",
         instructor: "Dr. Sarah Lee",
         rating: 4.8,
         enrollments: 2000,
         duration: "5 weeks",
         price: "₹2,999",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: AdvancedMachineLearning, // Placeholder image
         label: "Popular",
         labelStyle: { backgroundColor: "#007bff" },
         progress: 85, // Progress percentage
         name: "Complete Introduction to Machine Learning",
-        description: `Dive into the foundational concepts of machine learning with this comprehensive course. You'll explore various algorithms, understand data preprocessing, and gain practical experience with popular machine learning libraries. Perfect for aspiring data scientists and machine learning enthusiasts!`,
+        description: `Take your machine learning skills to the next level with this advanced course, designed for those who have a solid understanding of basic machine learning concepts. Dive deep into complex algorithms, advanced model evaluation techniques, and cutting-edge neural network architectures. Gain hands-on experience with sophisticated tools and libraries to tackle real-world challenges and push the boundaries of what machine learning can do.`,
         contents: [
-          "Introduction to Machine Learning",
-          "Data Preprocessing",
-          "Supervised Learning Algorithms",
-          "Unsupervised Learning Algorithms",
-          "Model Evaluation Techniques",
-          "Feature Engineering",
-          "Introduction to Neural Networks",
-          "Practical Applications",
+          "Advanced Supervised Learning Techniques",
+          "Deep Learning and Neural Network Architectures",
+          "Unsupervised Learning at Scale (Clustering, Dimensionality Reduction)",
+          "Model Optimization and Hyperparameter Tuning",
+          "Advanced Feature Engineering Strategies",
+          "Reinforcement Learning Fundamentals",
+          "Transfer Learning and Pretrained Models",
+          "Ethical Considerations in Machine Learning",
+          "Practical Applications and Case Studies in Industry",
         ],
         launchDate: "January 2024",
         includes: [
@@ -404,7 +376,7 @@ function Courses() {
         enrollments: 1500,
         duration: "10 weeks",
         price: "₹3,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: DeepLearning, // Placeholder image
         label: "Trending",
         progress: 90, // Progress percentage
         name: "Complete Deep Learning Specialization",
@@ -443,7 +415,7 @@ function Courses() {
         enrollments: 1300,
         duration: "7 weeks",
         price: "₹1,799",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: PythonDataScience, // Placeholder image
         label: "",
         progress: 70, // Progress percentage
         name: "Complete Data Science with Python",
@@ -482,7 +454,7 @@ function Courses() {
         enrollments: 1800,
         duration: "8 weeks",
         price: "₹2,299",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: MachineLearning_A_Z, // Placeholder image
         label: "Recommended",
         progress: 75, // Progress percentage
         name: "Complete Machine Learning A-Z",
@@ -524,7 +496,7 @@ function Courses() {
         enrollments: 750,
         duration: "5 weeks",
         price: "₹1,799",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: JavascriptAdvanced, // Placeholder image
         label: "",
         name: "Mastering Advanced JavaScript",
         description: `Take your JavaScript skills to the next level with this advanced course. Explore topics such as closures, promises, async/await, and functional programming. Perfect for developers looking to deepen their understanding of JavaScript!`,
@@ -563,20 +535,20 @@ function Courses() {
         enrollments: 650,
         duration: "4 weeks",
         price: "₹1,299",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: CSSMastery, // Placeholder image
         label: "",
         name: "CSS Mastery: From Beginner to Expert",
-        description: `Unlock the full potential of CSS with this comprehensive course. Learn about Flexbox, Grid, animations, and responsive design techniques that will make your websites stand out.`,
+        description: `Build upon your foundational CSS knowledge and move into intermediate skills. This course covers practical Flexbox and Grid usage, essential responsive design techniques, and CSS transitions that enhance web experiences. Perfect for those looking to bridge the gap between beginner and advanced skills.`,
         contents: [
-          "CSS Fundamentals",
-          "Flexbox Layout",
-          "CSS Grid",
-          "Transitions and Animations",
-          "Responsive Design Techniques",
-          "CSS Preprocessors (Sass)",
-          "Best Practices for CSS",
-          "Accessibility in CSS",
-          "Debugging CSS",
+          "CSS Fundamentals Review",
+          "Intermediate Flexbox Layouts",
+          "Using CSS Grid for Layouts",
+          "Simple Transitions and Animations",
+          "Responsive Design Essentials",
+          "Basic CSS Preprocessors (Sass) Overview",
+          "Core Best Practices for CSS",
+          "Introduction to CSS Accessibility",
+          "Common Debugging Techniques",
         ],
         launchDate: "June 2024",
         includes: [
@@ -602,7 +574,7 @@ function Courses() {
         enrollments: 800,
         duration: "6 weeks",
         price: "₹1,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: PythonDataScience1, // Placeholder image
         label: "",
         name: "Python for Data Science and Machine Learning",
         description: `Discover the power of Python in data science and machine learning. This course covers data manipulation, visualization, and building machine learning models. Ideal for aspiring data scientists!`,
@@ -635,26 +607,27 @@ function Courses() {
         ],
       },
       {
-        title: "Introduction to Machine Learning",
+        title: "Introduction to Machine Learning (Intermediate)",
         instructor: "Angela Davis",
         rating: 4.5,
         enrollments: 900,
         duration: "5 weeks",
         price: "₹1,799",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: IntermediateMachineLearning, // Placeholder image
         label: "",
         name: "Introduction to Machine Learning and AI",
-        description: `Step into the world of machine learning and AI with this foundational course. Learn about algorithms, data preprocessing, and model evaluation techniques. Perfect for beginners looking to break into the field of AI!`,
+        description: `Elevate your machine learning skills with this intermediate-level course. Dive deeper into essential algorithms, practical data handling, and model evaluation strategies that go beyond the basics.`,
         contents: [
-          "Understanding Machine Learning",
-          "Types of Machine Learning",
-          "Data Preprocessing Techniques",
-          "Exploratory Data Analysis",
-          "Building Machine Learning Models",
-          "Model Evaluation and Selection",
-          "Introduction to Neural Networks",
-          "Ethics in AI",
-          "Real-world Applications of Machine Learning",
+          "Review of Fundamental Machine Learning Concepts",
+          "Intermediate Supervised and Unsupervised Learning Techniques",
+          "Data Preprocessing for Complex Datasets",
+          "Exploratory Data Analysis Using Advanced Visualization Tools",
+          "Building Intermediate-Level Machine Learning Models",
+          "Model Evaluation and Validation Techniques (Cross-Validation, ROC Curves)",
+          "Feature Engineering and Selection Strategies",
+          "Overfitting Prevention: Regularization and Cross-Validation",
+          "Ethical and Societal Implications of Machine Learning",
+          "Real-world Applications and Case Studies in Machine Learning",
         ],
         launchDate: "August 2024",
         includes: [
@@ -674,27 +647,26 @@ function Courses() {
         ],
       },
       {
-        title: "Web Development Bootcamp",
+        title: "Web Development Bootcamp (Basic)",
         instructor: "Alice Johnson",
         rating: 4.7,
         enrollments: 1200,
         duration: "10 weeks",
         price: "₹2,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: BasicWebDev, // Placeholder image
         label: "",
         name: "The Complete Web Development Bootcamp",
-        description: `Become a full-stack web developer in this immersive bootcamp! Learn HTML, CSS, JavaScript, Node.js, and databases to build dynamic websites and applications. Suitable for all skill levels!`,
+        description: `Start your journey in web development with this beginner-friendly course. Learn essential skills in HTML, CSS, and JavaScript to create simple, static websites. This course is perfect for those new to coding and eager to build foundational web development skills.`,
         contents: [
-          "HTML & CSS Basics",
-          "JavaScript Fundamentals",
-          "Responsive Web Design",
-          "Backend Development with Node.js",
-          "Database Management with MongoDB",
-          "RESTful APIs",
-          "Authentication & Authorization",
-          "Deployment Techniques",
-          "Project: Build a Full-Stack Application",
+          "Introduction to HTML & Basic Structure",
+          "Styling with CSS: Selectors, Properties, and Layouts",
+          "JavaScript Basics: Variables, Functions, and Events",
+          "Building Simple Interactive Web Pages",
+          "Responsive Design Fundamentals",
+          "Introduction to Web Hosting and Deployment",
+          "Project: Build Your First Static Website",
         ],
+
         launchDate: "September 2024",
         includes: [
           { text: "60 hours on-demand video", icon: <FaVideo /> },
@@ -719,7 +691,7 @@ function Courses() {
         enrollments: 500,
         duration: "6 weeks",
         price: "₹1,199",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: DigitalMarketing, // Placeholder image
         label: "",
         name: "Digital Marketing: From Basics to Advanced",
         description: `Learn the fundamentals of digital marketing in this comprehensive course. Discover SEO, content marketing, social media strategies, and analytics to boost your online presence.`,
@@ -758,7 +730,7 @@ function Courses() {
         enrollments: 400,
         duration: "5 weeks",
         price: "₹1,499",
-        imageUrl: "https://via.placeholder.com/150", // Placeholder image
+        imageUrl: GraphicDesign, // Placeholder image
         label: "",
         name: "Introduction to Graphic Design",
         description: `Explore the world of graphic design in this beginner-friendly course. Learn about design principles, color theory, and tools like Adobe Illustrator and Photoshop.`,
@@ -793,25 +765,35 @@ function Courses() {
     ],
   };
 
+  const { interestedSkills } = useContext(SkillsContext); // Use the context
+  const { recommendationLevel } = useContext(SkillsContext); // Use the context to get recommendationLevel
+
   const [selectedCourse, setSelectedCourse] = useState(null); // State to hold the selected course
 
   const handleCourseSelect = (course, source) => {
     setSelectedCourse({ ...course, source }); // Update the state with the selected course and its source
   };
 
+  // Print all courses
+
   return (
     <>
+      {/* {console.log(recommendationLevel)} */}
       <Header />
-      {/* If no course is selected, show YourEnrolledCourses and ExploreMoreCourses */}
       {!selectedCourse ? (
         <>
           <YourEnrolledCourses
             courses={courses}
-            onCourseSelect={(course) => handleCourseSelect(course, "enrolled")} // Indicate source as 'enrolled'
+            onCourseSelect={(course) => handleCourseSelect(course, "enrolled")} //
+          />
+          <DomainCategorizer
+            courses={courses}
+            expectedSkill={interestedSkills} // Pass interestedSkills as a prop
+            recommendationLevel={recommendationLevel}
           />
           <ExploreMoreCourses
             courses={courses}
-            onCourseSelect={(course) => handleCourseSelect(course, "explore")} // Indicate source as 'explore'
+            onCourseSelect={(course) => handleCourseSelect(course, "explore")} //
           />
         </>
       ) : (
@@ -819,7 +801,7 @@ function Courses() {
           course={selectedCourse}
           buttonLabel={
             selectedCourse.source === "enrolled" ? "View" : "Enroll Now"
-          } // Set button label based on source
+          }
         />
       )}
       <Footer />
